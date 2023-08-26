@@ -1,25 +1,10 @@
-//importando o modulo nativo http
-const http = require('http')
+// importando o app.js para usar-lo
+import app from './src/app.js'
 
-//definindo uma porta para sevidor nosso servidor
-const port = 3000;
 
-//Criando um objeto chamado rotas 
-const rotas = {
-    '/': 'Curso de Node',
-    '/livros': 'Entrei na pag de livros',
-    '/autores': 'Listagem de autores',
-    '/editora': 'Pagina de editora',
-    '/sobre': 'Info sobre o projeto'
-}
+//Fazemos um condicional na porta  definimos ou a porta no ambiente de producao ou a porta 3000
+const port = process.env.PORT || 3000;
 
-//constante para o servidor e definindo a resposta do servidor
-const server = http.createServer((req, res) => {
-res.writeHead(200, {'Content-Type': 'text/plain'});
-res.end(rotas[req.url]);
-})
-
-//Definindo a porta que o servidor vai escutar a requisicao
-server.listen(port, () => {
+app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`)
 })
